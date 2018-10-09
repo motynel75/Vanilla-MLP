@@ -1,88 +1,58 @@
-# Project Title
+# Multilayer perceptron
 
-One Paragraph of project description goes here
+This project shows my own implementation of a feedforward neural network using Python 3 Numpy library. The model was tested on the IRIS dataset, containing 150 samples of 3 class each, to classify plant species. This version includes Logistic sigmoid activation function for hidden layers, Softmax function for output layer and Cross-entropy as loss function. We achieved between 91.3% and 100% of accuracy on this dataset.
 
-## Getting Started
+This implementation includes some basic features:
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+- Stochastic gradient descent
+- Momentum
+- Dropout
+- Xavier initializer
+
+More improvement techniques will be add in further versions.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Use your Python 3 Numpy version.
 
+Use sickit-learning package for dataset processing.
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
+pip install -U scikit-learn
 ```
 
-And repeat
+### Installing and runining
+
+In order to use this model, you can directly compile either the providedvanilla_MLP.pyorvanilla_mlp.ipynb. The code already contains a model with the optimal set of hyper-parameters. If you need to create your own configuration, you have to set up a model as following :
+
+To create a model:
+```
+model = MultiLayerPeceptron(X_train, Y_train_enc, nb_class=NUMBER_OF_CLASS)
+```
+Add a number of hidden layers:
+```
+# Adding hidden layers
+model = model.addHiddenLayer(NUMBER_OF_NEURONS, dropout=0.)
+model = model.addHiddenLayer(NUMBER_OF_NEURONS, dropout=0.)
+model = model.addHiddenLayer(NUMBER_OF_NEURONS, dropout=0.)
+...
 
 ```
-until finished
+
+Run training routine:
+```
+# Running training routine
+model = model.trainingProcess(nb_epoch=NB_EPOCHS, batch_size=1, lr=LEARNING_RATE, beta=0.9)
+
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+Compute test predictions and accuracy.
+```
+# Prediction on test dataset:
+pred, test_acc = model.predict(X_test, Y_test_enc)
+print("*** Test Accuracy ***: {}".format(test_acc))
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+* **Amine K.** - *Initial work* - [Vanilla MLP](https://github.com/motynel75/Vanilla-MLP)
